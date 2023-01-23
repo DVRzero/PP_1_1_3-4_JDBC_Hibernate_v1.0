@@ -1,12 +1,17 @@
 package jm.task.core.jdbc;
 
+import jm.task.core.jdbc.service.UserService;
 import jm.task.core.jdbc.service.UserServiceImpl;
-import java.sql.*;
+
+// требуется где необходимо реализовать логику транзакций - X
+// поля класса должны быть приватными - X
+// используй полиморфизм - обращайся к классу через интерфейс - X
+// при создании таблицы нужно проверить, что она существует, также желательно при удалении - X
 
 public class Main {
     public static void main(String[] args) {
 
-        UserServiceImpl userService = new UserServiceImpl();
+        UserService userService = new UserServiceImpl();
 
         userService.createUsersTable();
 
