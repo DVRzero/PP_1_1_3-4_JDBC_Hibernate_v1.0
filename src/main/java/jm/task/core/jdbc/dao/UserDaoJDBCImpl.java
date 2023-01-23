@@ -115,7 +115,6 @@ public class UserDaoJDBCImpl implements UserDao {
                 System.out.println("User age:" + userAge);
                 users.add(new User(userName, userLastName, userAge));
             }
-            connection.commit();
         } catch (SQLException e) {
             try {
                 connection.rollback();
@@ -144,6 +143,3 @@ public class UserDaoJDBCImpl implements UserDao {
         }
     }
 }
-
-// транзакции - роллбеки; отключить автокоммит, ручное управление транзакциями
-// свойства транзакции
