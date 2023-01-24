@@ -100,10 +100,8 @@ public class UserDaoJDBCImpl implements UserDao {
     public List<User> getAllUsers() {
         List<User> users = new ArrayList<>();
         try (PreparedStatement statement = connection.prepareStatement(SELECT)){
-            connection.setAutoCommit(false);
             ResultSet rs = statement.executeQuery();
             while (rs.next()) {
-                //users.add(new User(rs.getString("name"), rs.getString("lastName"), Byte.parseByte(rs.getString("age")));
                 int userId = rs.getInt("id");
                 String userName = rs.getString("name");
                 String userLastName = rs.getString("lastName");
@@ -116,11 +114,6 @@ public class UserDaoJDBCImpl implements UserDao {
                 users.add(new User(userName, userLastName, userAge));
             }
         } catch (SQLException e) {
-            try {
-                connection.rollback();
-            } catch (SQLException ex) {
-                throw new RuntimeException(ex);
-            }
             System.out.println("Ошибка создания БД" + e.getMessage());
             return null;
         }
